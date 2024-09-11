@@ -116,6 +116,14 @@ export function useTimeUtils(convertState?: convertToJalali) {
             minute: "2-digit",
         });
     }
+    function dateToISOLikeButLocal(date: Date): string | Date {
+        const offsetMs = date.getTimezoneOffset() * 60 * 1000;
+        const msLocal = date.getTime() - offsetMs;
+        const dateLocal = new Date(msLocal);
+        const iso = dateLocal.toISOString();
+        const isoLocal = iso.slice(0, 19);
+        return isoLocal;
+    }
 
     return {
         customFullDateConvert,
@@ -135,7 +143,8 @@ export function useTimeUtils(convertState?: convertToJalali) {
         convertDayToGregorian,
         convertMonthToGregorian,
         convertHourAndMinute,
-        convertHourAndMinuteToGregorian
+        convertHourAndMinuteToGregorian,
+        dateToISOLikeButLocal
 
     }
 }
