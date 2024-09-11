@@ -124,6 +124,9 @@ export function useTimeUtils(convertState?: convertToJalali) {
         const isoLocal = iso.slice(0, 19);
         return isoLocal;
     }
+    function addMinutes(date: Date, minutes: number): Date {
+        return new Date(date.getTime() + minutes * 60000)
+    }
 
     return {
         customFullDateConvert,
@@ -144,7 +147,8 @@ export function useTimeUtils(convertState?: convertToJalali) {
         convertMonthToGregorian,
         convertHourAndMinute,
         convertHourAndMinuteToGregorian,
-        dateToISOLikeButLocal
+        dateToISOLikeButLocal,
+        addMinutes
 
     }
 }
